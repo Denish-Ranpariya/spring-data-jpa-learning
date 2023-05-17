@@ -68,4 +68,36 @@ class StudentRepositoryTest {
         System.out.println(student);
         System.out.println("--------------------------------");
     }
+
+    @Test
+    public void printStudentFirstNameByEmailId() {
+        String studentFirstName = studentRepository.getStudentFirstNameByEmailId("thisisdenish@gmail.com");
+        System.out.println("--------------------------------");
+        System.out.println(studentFirstName);
+        System.out.println("--------------------------------");
+    }
+
+    @Test
+    public void printStudentByEmailIdNative() {
+        Student student = studentRepository.getStudentsByEmailIdNative("thisisdenish@gmail.com");
+        System.out.println("--------------------------------");
+        System.out.println(student);
+        System.out.println("--------------------------------");
+    }
+
+    @Test
+    public void printStudentByEmailIdNativeNamedParam() {
+        Student student = studentRepository.getStudentsByEmailIdNativeNamedParam("thisisdenish@gmail.com");
+        System.out.println("--------------------------------");
+        System.out.println(student);
+        System.out.println("--------------------------------");
+    }
+
+    @Test
+    public void updateFirstNameByEmailIdTest() {
+        int updateCount = studentRepository.updateFirstNameByEmailId("denish", "thisisdenish@gmail.com");
+        System.out.println("--------------------------------");
+        System.out.println("Update count : " + updateCount);
+        System.out.println("--------------------------------");
+    }
 }
