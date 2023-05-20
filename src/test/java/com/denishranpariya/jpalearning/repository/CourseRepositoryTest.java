@@ -1,6 +1,7 @@
 package com.denishranpariya.jpalearning.repository;
 
 import com.denishranpariya.jpalearning.entity.Course;
+import com.denishranpariya.jpalearning.entity.Student;
 import com.denishranpariya.jpalearning.entity.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,8 +65,20 @@ class CourseRepositoryTest {
 
     @Test
     public void printFindByTitleContaining() {
-        Pageable firstPageTenRecords = PageRequest.of(0,10);
+        Pageable firstPageTenRecords = PageRequest.of(0, 10);
         List<Course> courses = courseRepository.findByTitleContaining("D", firstPageTenRecords).getContent();
         System.out.println(courses);
+    }
+
+    @Test
+    public void saveCourseWithStudentAndTeacher() {
+
+        Teacher teacher = Teacher.builder().firstName("Lizze").lastName("Morgan").build();
+
+        Student student = Student.builder().firstName("Abhishek").lastName("Singh").emailId("abhishek@gmail.com").build();
+
+        Course course = Course.builder().title("AI").credit(12).teacher(teacher).students(List.of(student)).build();
+        
+        courseRepository.save(course);
     }
 }
