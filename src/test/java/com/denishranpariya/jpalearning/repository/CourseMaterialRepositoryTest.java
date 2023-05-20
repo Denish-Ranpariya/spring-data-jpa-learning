@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
 
 @SpringBootTest
 class CourseMaterialRepositoryTest {
@@ -20,10 +20,20 @@ class CourseMaterialRepositoryTest {
     public void saveCourseMaterialTest() {
         Course course = Course.builder().title("DSA").credit(6).build();
 
-        courseRepository.save(course);
+        //to skip this step we can use cascade
+        //courseRepository.save(course);
 
         CourseMaterial courseMaterial = CourseMaterial.builder().url("https://www.google.com").course(course).build();
 
         courseMaterialRepository.save(courseMaterial);
+    }
+
+    @Test
+    public void printAllCourseMaterials() {
+        List<CourseMaterial> courseMaterials = courseMaterialRepository.findAll();
+
+        System.out.println("----------------------------------");
+        System.out.println("Course Materials : " + courseMaterials);
+        System.out.println("----------------------------------");
     }
 }
