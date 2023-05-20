@@ -36,4 +36,10 @@ class CourseMaterialRepositoryTest {
         System.out.println("Course Materials : " + courseMaterials);
         System.out.println("----------------------------------");
     }
+
+    @Test
+    public void saveCourseMaterialWithoutCourse() {
+        CourseMaterial courseMaterial = CourseMaterial.builder().url("https://www.google.com").build();
+        courseMaterialRepository.save(courseMaterial); // should throw an exception as Course not optional field while saving a course material
+    }
 }
